@@ -6,17 +6,31 @@
 //  Copyright © 2017 New Route. All rights reserved.
 //
 
-//  • "if let" statements
+//  To do:
+//      • Consider replacing a guard with optionals in getJSON(_)
+//      • "output" parameter in getJSON(_) might have to include an 
+//        optional array instead of an array of optionals
 
 import UIKit
 
-class ViewController: UIViewController {
+typealias JSONItem = [String:Any]
 
+class ViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // getJSON(from: "https://jsonplaceholder.typicode.com/users")
-        postJSON(["1":"Message 1", "2":"Message 2"], to: "https://jsonplaceholder.typicode.com/posts")
+        let sourceURL = URL(string: "https://api.worldoftanks.com/wot/encyclopedia/tanks/?application_id=demo")
+        
+        getJSON(from: sourceURL!) { result in
+            for item in result {
+                for (key, value) in item! {
+                    print("\(key): \(value)")
+                }
+                
+                print()
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,71 +38,44 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // Get JSON from server
-    func getJSON(from address: String) {
-        guard let url = URL(string: address) else {
-            return
-        }
-        
-        let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let data = data {
-                do {
-                    let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(jsonData)
-                } catch {
-                    print("getJSON(..): \(error)")
-                }
-            } else {
-                print("getJSON(..): No data")
-            }
-            
-            if let response = response {
-                print(response)
-            } else {
-                print("getJSON(..): No response")
-            }
-        }
-        
-        session.resume()
-    }
-    
-    // Post JSON to server
-    func postJSON(_ jsonDictionary: [String:String], to address: String) {
-        guard let url = URL(string: address) else {
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        if let jsonData = try? JSONSerialization.data(withJSONObject: jsonDictionary, options: []) {
-            request.httpBody = jsonData
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        } else {
-            print("getJSON(..): Couldn't convert to JSON")
-        }
-        
-        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let data = data {
-                do {
-                    let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(jsonData)
-                } catch {
-                    print("postJSON(..): \(error)")
-                }
-            } else {
-                print("postJSON(..): No data")
-            }
-            
-            if let response = response {
-                print(response)
-            } else {
-                print("postJSON(..): No response")
-            }
-        }
-        
-        session.resume()
-    }
+    func getJSON(from url: URL, output: @escaping ([JSONItem?]) -> ()) {
+        var result = [JSONItem]()
 
+        let session = URLSession.shared.dataTask(with: url) { (data, _, error) in
+            if let data = data {
+                do {
+                    // Get JSON
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+
+                    // Parse JSON
+                    if let dictionary = json as? JSONItem {
+                        if let data = dictionary["data"] as? JSONItem {
+                            for (key, value) in data {
+//                                print("Tank #\(key):")
+                                
+                                if let itemDictionary = value as? JSONItem {
+//                                    for (key, value) in itemDictionary {
+//                                        print("\t\(key): \(value)")
+//                                    }
+                                    
+                                    result.append(itemDictionary)
+                                }
+                                
+//                                print()
+                            }
+                        }
+                    }
+                } catch {
+                    print("getJSON(_): \(error)")
+                }
+            } else {
+                print("getJSON(_): No data has been received")
+            }
+            
+            output(result)
+        }
+        
+        session.resume()
+    }
 }
 
