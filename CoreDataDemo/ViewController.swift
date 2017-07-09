@@ -7,9 +7,8 @@
 //
 
 //  To do:
-//      • Consider replacing a guard with optionals in getJSON(_)
-//      • "output" parameter in getJSON(_) might have to include an 
-//        optional array instead of an array of optionals
+//      • getJSON(_) "returns" an empty array in case of 
+//        an error. Consider returning an optional array.
 
 import UIKit
 
@@ -20,16 +19,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let sourceURL = URL(string: "https://api.worldoftanks.com/wot/encyclopedia/tanks/?application_id=demo")
-        
-        getJSON(from: sourceURL!) { result in
-            for item in result {
-                for (key, value) in item! {
-                    print("\(key): \(value)")
+        if let sourceURL = URL(string: "https://api.worldoftanks.com/wot/encyclopedia/tanks/?application_id=demo") {
+            getJSON(from: sourceURL) { result in
+                for item in result {
+                    for (key, value) in item {
+                        print("\(key): \(value)")
+                    }
+                    
+                    print()
                 }
-                
-                print()
             }
+        } else {
+            print("viewDidLoad(): Couldn't convert to URL")
         }
     }
 
@@ -38,7 +39,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func getJSON(from url: URL, output: @escaping ([JSONItem?]) -> ()) {
+    func getJSON(from url: URL, output: @escaping ([JSONItem]) -> ()) {
         var result = [JSONItem]()
 
         let session = URLSession.shared.dataTask(with: url) { (data, _, error) in
@@ -50,18 +51,10 @@ class ViewController: UIViewController {
                     // Parse JSON
                     if let dictionary = json as? JSONItem {
                         if let data = dictionary["data"] as? JSONItem {
-                            for (key, value) in data {
-//                                print("Tank #\(key):")
-                                
+                            for (_, value) in data {
                                 if let itemDictionary = value as? JSONItem {
-//                                    for (key, value) in itemDictionary {
-//                                        print("\t\(key): \(value)")
-//                                    }
-                                    
                                     result.append(itemDictionary)
                                 }
-                                
-//                                print()
                             }
                         }
                     }
@@ -78,4 +71,5 @@ class ViewController: UIViewController {
         session.resume()
     }
 }
+
 
