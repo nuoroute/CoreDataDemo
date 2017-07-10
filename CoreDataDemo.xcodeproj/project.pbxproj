@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC6086701F13B7760032745A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC60866F1F13B7760032745A /* Network.swift */; };
 		AC980B5C1F0EA6B600FD70DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC980B5B1F0EA6B600FD70DF /* AppDelegate.swift */; };
 		AC980B5E1F0EA6B600FD70DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC980B5D1F0EA6B600FD70DF /* ViewController.swift */; };
 		AC980B611F0EA6B600FD70DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC980B5F1F0EA6B600FD70DF /* Main.storyboard */; };
 		AC980B641F0EA6B600FD70DF /* CoreDataDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC980B621F0EA6B600FD70DF /* CoreDataDemo.xcdatamodeld */; };
 		AC980B661F0EA6B600FD70DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC980B651F0EA6B600FD70DF /* Assets.xcassets */; };
 		AC980B691F0EA6B600FD70DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC980B671F0EA6B600FD70DF /* LaunchScreen.storyboard */; };
+		ACCAF26E1F128681007B3165 /* Tank.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCAF26D1F12867F007B3165 /* Tank.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC60866F1F13B7760032745A /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Network.swift; path = ../Network.swift; sourceTree = "<group>"; };
 		AC980B581F0EA6B600FD70DF /* CoreDataDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC980B5B1F0EA6B600FD70DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC980B5D1F0EA6B600FD70DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		AC980B651F0EA6B600FD70DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC980B681F0EA6B600FD70DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC980B6A1F0EA6B600FD70DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACCAF26D1F12867F007B3165 /* Tank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tank.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			children = (
 				AC980B5B1F0EA6B600FD70DF /* AppDelegate.swift */,
 				AC980B5D1F0EA6B600FD70DF /* ViewController.swift */,
+				ACCAF26D1F12867F007B3165 /* Tank.swift */,
+				AC60866F1F13B7760032745A /* Network.swift */,
 				AC980B5F1F0EA6B600FD70DF /* Main.storyboard */,
 				AC980B651F0EA6B600FD70DF /* Assets.xcassets */,
 				AC980B671F0EA6B600FD70DF /* LaunchScreen.storyboard */,
@@ -140,9 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC6086701F13B7760032745A /* Network.swift in Sources */,
 				AC980B5E1F0EA6B600FD70DF /* ViewController.swift in Sources */,
 				AC980B641F0EA6B600FD70DF /* CoreDataDemo.xcdatamodeld in Sources */,
 				AC980B5C1F0EA6B600FD70DF /* AppDelegate.swift in Sources */,
+				ACCAF26E1F128681007B3165 /* Tank.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +314,7 @@
 				AC980B6F1F0EA6B600FD70DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
