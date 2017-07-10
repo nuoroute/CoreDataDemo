@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let _ = Tank(withId: 2305)
+        let _ = Tank(withId: 1)
     }
 
     override func didReceiveMemoryWarning() {
