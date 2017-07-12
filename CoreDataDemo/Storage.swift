@@ -13,14 +13,6 @@ protocol Storage {
     var tanks: [Tank] { get }
 }
 
-class InMemoryStorage: Storage {
-    private (set) var tanks = [Tank]()
-    
-    func save(_ tank: Tank) {
-        self.tanks.append(tank)
-    }
-}
-
 //class CoreDataStorage: Storage {
 //    func save(_ tank: Tank) {
 //        // self.tanks.append(tank)

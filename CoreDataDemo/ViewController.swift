@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         let downloadManager = DownloadManager(storage)
         
         downloadManager.getAllTanks {
-            // refresh UI
+            // 
         }
         
 //        _ = Tank(withId: 1) { tank in
