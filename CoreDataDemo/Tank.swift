@@ -25,20 +25,21 @@ class Tank {
     var image = ""
     var smallImage = ""
     
-    static var allTanks: [Tank] {
+    static func getAllTanks(completion: @escaping ([Tank]) -> ()) {
         var tanks = [Tank]()
+        
         Network.getJSON() { json in
             for (key, _) in json {
-                if let key = Int(key) {
-                    tanks.append(Tank(withId: key))
+                _ = Tank(withId: Int(key)!) { tank in
+                    tanks.append(tank)
                 }
             }
+            
+            completion(tanks)
         }
-        
-        return tanks
     }
     
-    init(withId id: Int) {
+    init(withId id: Int, completion: @escaping (Tank) -> ()) {
         Network.getJSON() { json in
             if let tank = json[String(id)] {
                 self.nation = tank["nation"] as! String
@@ -50,7 +51,7 @@ class Tank {
                 self.image = tank["image"] as! String
                 self.smallImage = tank["image_small"] as! String
                 
-                print(self.name)
+                completion(self)
             } else {
                 print("Item not found")
             }

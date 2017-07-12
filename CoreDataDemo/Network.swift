@@ -41,7 +41,7 @@ struct Network {
     private static func collectData(from json: JSONItem) -> [String:JSONItem]? {
         var result = [String:JSONItem]()
         
-        guard let tanks = json["data"] as? JSONItem else {
+        guard let tanks = json["data"]! as? JSONItem else {
             print("collectData(_): Couldn't convert json[\"data\"] to JSONItem")
             return nil
         }

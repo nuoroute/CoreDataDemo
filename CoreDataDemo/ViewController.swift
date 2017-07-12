@@ -9,11 +9,30 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let storage: Storage = InMemoryStorage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let _ = Tank(withId: 1)
+        let downloadManager = DownloadManager(storage)
+        
+        downloadManager.getAllTanks {
+            // refresh UI
+        }
+        
+//        _ = Tank(withId: 1) { tank in
+//            Storage.save(tank)
+//        }
+        
+//        Tank.getAllTanks() { tanks in
+//            for tank in tanks {
+//                Storage.save(tank)
+//            }
+//            
+//            for tank in Storage.getAllTanks() {
+//                print(tank.name)
+//            }
+//        }
     }
 
     override func didReceiveMemoryWarning() {
