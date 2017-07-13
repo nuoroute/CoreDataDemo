@@ -8,29 +8,32 @@
 
 import UIKit
 
+typealias JSONItem = [String:Any]
+
 class ViewController: UIViewController {
     let storage: Storage = InMemoryStorage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let downloadManager = DownloadManager(storage)
-        
-        downloadManager.getAllTanks {
-            // 
+
+        // Create tanks and save them in storage
+        let _ = Tank(withId: 3393) { tank in
+            self.storage.save(tank)
+        }
+
+        Tank.getAllTanks() { tanks in
+            for (_, tank) in tanks {
+                self.storage.save(tank)
+            }
         }
         
-//        _ = Tank(withId: 1) { tank in
-//            Storage.save(tank)
-//        }
-        
-//        Tank.getAllTanks() { tanks in
-//            for tank in tanks {
-//                Storage.save(tank)
-//            }
-//            
-//            for tank in Storage.getAllTanks() {
-//                print(tank.name)
+//        // Retrieve tanks from that storage using download manager
+//        let downloadManager = DownloadManager(storage)
+//        
+//        downloadManager.getAllTanks {
+//            // Will return tanks once completed ??what??
+//            for each in downloadManager.storage.tanks {
+//                print(each.name)
 //            }
 //        }
     }

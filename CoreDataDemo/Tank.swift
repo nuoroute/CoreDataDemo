@@ -9,11 +9,9 @@
 //  Info:
 //  • Make init failable (in case item not found)
 //  • Force unwrapping in init may be a bad idea
-//  • Images should probably be a UIImage
+//  • Images should probably be UIImage's
 
 import Foundation
-
-typealias JSONItem = [String:Any]
 
 class Tank {
     var nation = ""
@@ -25,14 +23,24 @@ class Tank {
     var image = ""
     var smallImage = ""
     
-    static func getAllTanks(completion: @escaping ([Tank]) -> ()) {
-        var tanks = [Tank]()
+    static func getAllTanks(completion: @escaping ([Int:Tank]) -> ()) {
+        var tanks = [Int:Tank]()
         
         Network.getJSON() { json in
-            for (key, _) in json {
-                _ = Tank(withId: Int(key)!) { tank in
-                    tanks.append(tank)
-                }
+            for (_, tank) in json {
+                let id = tank["tank_id"] as! Int
+                let tank = Tank(
+                    nation: tank["nation"] as! String,
+                    name: tank["name"] as! String,
+                    type: tank["type"] as! String,
+                    level: tank["level"] as! Int,
+                    id: tank["tank_id"] as! Int,
+                    isPremium: tank["is_premium"] as! Bool,
+                    image: tank["image"] as! String,
+                    smallImage: tank["image_small"] as! String
+                )
+                
+                tanks[id] = tank
             }
             
             completion(tanks)
@@ -40,21 +48,30 @@ class Tank {
     }
     
     init(withId id: Int, completion: @escaping (Tank) -> ()) {
-        Network.getJSON() { json in
-            if let tank = json[String(id)] {
-                self.nation = tank["nation"] as! String
-                self.name = tank["name"] as! String
-                self.type = tank["type"] as! String
-                self.level = tank["level"] as! Int
-                self.id = tank["tank_id"] as! Int
-                self.isPremium = tank["is_premium"] as! Bool
-                self.image = tank["image"] as! String
-                self.smallImage = tank["image_small"] as! String
+        Tank.getAllTanks() { tanks in
+            if let tank = tanks[id] {
+                self.nation = tank.nation
+                self.name = tank.name
+                self.type = tank.type
+                self.level = tank.level
+                self.id = tank.id
+                self.isPremium = tank.isPremium
+                self.image = tank.image
+                self.smallImage = tank.smallImage
                 
                 completion(self)
-            } else {
-                print("Item not found")
             }
         }
+    }
+    
+    private init(nation: String, name: String, type: String, level: Int, id: Int, isPremium: Bool, image: String, smallImage: String) {
+        self.nation = nation
+        self.name = name
+        self.type = type
+        self.level = level
+        self.id = id
+        self.isPremium = isPremium
+        self.image = image
+        self.smallImage = smallImage
     }
 }

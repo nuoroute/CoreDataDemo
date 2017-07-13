@@ -8,10 +8,7 @@
 
 import Foundation
 
-class DownloadManager {
-    // Pulls each tank from json
-    // Saves tanks in storage
-    
+class DownloadManager {    
     let storage: Storage!
     
     init(_ storage: Storage) {
@@ -19,6 +16,6 @@ class DownloadManager {
     }
     
     func getAllTanks(completion: () -> ()) {
-        
+        completion()
     }
 }

@@ -24,12 +24,12 @@ struct Network {
                     return
                 }
                 
-                guard let result = self.collectData(from: json) else {
-                    print("getJSON(_): Couldn't collect data")
+                guard let tanksJSON = self.parse(json) else {
+                    print("getJSON(_): Couldn't parse JSON")
                     return
                 }
                 
-                completion(result)
+                completion(tanksJSON)
             } catch {
                 print("getJSON(_): \(error)")
             }
@@ -38,10 +38,10 @@ struct Network {
         session.resume()
     }
     
-    private static func collectData(from json: JSONItem) -> [String:JSONItem]? {
+    private static func parse(_ json: JSONItem) -> [String:JSONItem]? {
         var result = [String:JSONItem]()
         
-        guard let tanks = json["data"]! as? JSONItem else {
+        guard let tanks = json["data"] as? JSONItem else {
             print("collectData(_): Couldn't convert json[\"data\"] to JSONItem")
             return nil
         }
