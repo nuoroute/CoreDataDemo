@@ -19,11 +19,20 @@ class ViewController: UIViewController {
         // Create tanks and save them in storage
         let _ = Tank(withId: 3393) { tank in
             self.storage.save(tank)
+            
+            print(tank.name)
+            print(tank.nation)
+            print(tank.id)
         }
 
         Tank.getAllTanks() { tanks in
             for (_, tank) in tanks {
                 self.storage.save(tank)
+            
+                // print(tank.name)
+                // print(tank.nation)
+                // print(tank.id)
+                // print()
             }
         }
         

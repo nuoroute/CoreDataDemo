@@ -26,8 +26,8 @@ class Tank {
     static func getAllTanks(completion: @escaping ([Int:Tank]) -> ()) {
         var tanks = [Int:Tank]()
         
-        Network.getJSON() { json in
-            for (_, tank) in json {
+        Network.getJSON() { tanksJSON in
+            for tank in tanksJSON {
                 let id = tank["tank_id"] as! Int
                 let tank = Tank(
                     nation: tank["nation"] as! String,

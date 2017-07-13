@@ -11,7 +11,7 @@ import Foundation
 struct Network {
     private static let apiURL = URL(string: "https://api.worldoftanks.com/wot/encyclopedia/tanks/?application_id=demo")!
 
-    static func getJSON(completion: @escaping ([String:JSONItem]) -> ()) {
+    static func getJSON(completion: @escaping ([JSONItem]) -> ()) {
         let session = URLSession.shared.dataTask(with: apiURL) { (data, _, error) in
             guard let data = data else {
                 print("getJSON(_): No data has been received")
@@ -38,18 +38,15 @@ struct Network {
         session.resume()
     }
     
-    private static func parse(_ json: JSONItem) -> [String:JSONItem]? {
-        var result = [String:JSONItem]()
+    private static func parse(_ json: JSONItem) -> [JSONItem]? {
+        var result = [JSONItem]()
         
-        guard let tanks = json["data"] as? JSONItem else {
-            print("collectData(_): Couldn't convert json[\"data\"] to JSONItem")
+        guard let tanks = json["data"] as? [String:JSONItem] else {
             return nil
         }
         
-        for (tankId, tankDictionary) in tanks {
-            if let tankDictionary = tankDictionary as? JSONItem {
-                result[tankId] = tankDictionary
-            }
+        for (_, tank) in tanks {
+            result.append(tank)
         }
         
         return result
