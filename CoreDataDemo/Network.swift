@@ -8,30 +8,34 @@
 
 import Foundation
 
+typealias JSONItem = [String:Any]
+
 struct Network {
     private static let apiURL = URL(string: "https://api.worldoftanks.com/wot/encyclopedia/tanks/?application_id=demo")!
+    
+    private init() {}
 
     static func getJSON(completion: @escaping ([JSONItem]) -> ()) {
         let session = URLSession.shared.dataTask(with: apiURL) { (data, _, error) in
             guard let data = data else {
-                print("getJSON(_): No data has been received")
+                print("Network > getJSON(_): No data has been received")
                 return
             }
             
             do {
                 guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? JSONItem else {
-                    print("getJSON(_): Couldn't convert data to JSONItem (aka [String:Any])")
+                    print("Network > getJSON(_): Couldn't convert data to JSONItem (aka [String:Any])")
                     return
                 }
                 
                 guard let tanksJSON = self.parse(json) else {
-                    print("getJSON(_): Couldn't parse JSON")
+                    print("Network > getJSON(_): Couldn't parse JSON")
                     return
                 }
                 
                 completion(tanksJSON)
             } catch {
-                print("getJSON(_): \(error)")
+                print("Network > getJSON(_): \(error)")
             }
         }
         

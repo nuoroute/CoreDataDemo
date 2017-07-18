@@ -9,16 +9,12 @@
 import Foundation
 
 protocol Storage {
-    func save(_ tank: Tank)
     var tanks: [Tank] { get }
+    
+    func addTank(from dictionary: JSONItem)
+    func addTank(name: String, nation: String, type: String, level: Int, id: Int, isPremium: Bool, image: String, smallImage: String)
+    func addTank(_ tank: Tank)
+    func deleteTank(_ tank: Tank)
+    func deleteTank(atIndex index: Int)
+    func clear()
 }
-
-//class CoreDataStorage: Storage {
-//    func save(_ tank: Tank) {
-//        // self.tanks.append(tank)
-//    }
-//    
-//    func getAllTanks() -> [Tank] {
-//        return []
-//    }
-//}

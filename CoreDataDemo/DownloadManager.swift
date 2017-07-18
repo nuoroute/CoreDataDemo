@@ -15,7 +15,13 @@ class DownloadManager {
         self.storage = storage
     }
     
-    func getAllTanks(completion: () -> ()) {
-        completion()
+    func getAllTanks(completion: @escaping () -> ()) {
+        Network.getJSON() { tanksJSON in
+            for tankJSON in tanksJSON {
+                self.storage.addTank(from: tankJSON)
+            }
+        
+            completion()
+        }
     }
 }

@@ -6,67 +6,32 @@
 //  Copyright © 2017 New Route. All rights reserved.
 //
 
-//  Info:
-//  • Make init failable (in case item not found)
-//  • Force unwrapping in init may be a bad idea
-//  • Images should probably be UIImage's
-
 import Foundation
 
 class Tank {
-    var nation = ""
-    var name = ""
-    var type = ""
-    var level = 0
-    var id = 0
-    var isPremium = false
-    var image = ""
-    var smallImage = ""
+    var name: String
+    var nation: String
+    var type: String
+    var level: Int
+    var id: Int
+    var isPremium: Bool
+    var image: String
+    var smallImage: String
     
-    static func getAllTanks(completion: @escaping ([Int:Tank]) -> ()) {
-        var tanks = [Int:Tank]()
-        
-        Network.getJSON() { tanksJSON in
-            for tank in tanksJSON {
-                let id = tank["tank_id"] as! Int
-                let tank = Tank(
-                    nation: tank["nation"] as! String,
-                    name: tank["name"] as! String,
-                    type: tank["type"] as! String,
-                    level: tank["level"] as! Int,
-                    id: tank["tank_id"] as! Int,
-                    isPremium: tank["is_premium"] as! Bool,
-                    image: tank["image"] as! String,
-                    smallImage: tank["image_small"] as! String
-                )
-                
-                tanks[id] = tank
-            }
-            
-            completion(tanks)
-        }
+    init(from json: JSONItem) {
+        self.name = json["name"] as? String ?? ""
+        self.nation = json["nation"] as? String ?? ""
+        self.type = json["type"] as? String ?? ""
+        self.level = json["level"] as? Int ?? 0
+        self.id = json["tank_id"] as? Int ?? 0
+        self.isPremium = json["is_premium"] as? Bool ?? false
+        self.image = json["image"] as? String ?? ""
+        self.smallImage = json["image_small"] as? String ?? ""
     }
     
-    init(withId id: Int, completion: @escaping (Tank) -> ()) {
-        Tank.getAllTanks() { tanks in
-            if let tank = tanks[id] {
-                self.nation = tank.nation
-                self.name = tank.name
-                self.type = tank.type
-                self.level = tank.level
-                self.id = tank.id
-                self.isPremium = tank.isPremium
-                self.image = tank.image
-                self.smallImage = tank.smallImage
-                
-                completion(self)
-            }
-        }
-    }
-    
-    private init(nation: String, name: String, type: String, level: Int, id: Int, isPremium: Bool, image: String, smallImage: String) {
-        self.nation = nation
+    init(name: String, nation: String, type: String, level: Int, id: Int, isPremium: Bool, image: String, smallImage: String) {
         self.name = name
+        self.nation = nation
         self.type = type
         self.level = level
         self.id = id

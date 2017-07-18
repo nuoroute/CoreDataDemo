@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC25BAD11F1B8FC800CEE2E7 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25BAD01F1B8FC800CEE2E7 /* TableViewController.swift */; };
+		AC25BAD31F1C200F00CEE2E7 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25BAD21F1C200F00CEE2E7 /* ItemViewController.swift */; };
 		AC3CCF441F152FDC00F84623 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3CCF431F152FDC00F84623 /* Storage.swift */; };
+		AC3F5ADA1F1E87E000214172 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3F5AD91F1E87DF00214172 /* CoreDataStorage.swift */; };
 		AC856A1D1F1674870053BEB4 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC856A1B1F1674870053BEB4 /* DownloadManager.swift */; };
 		AC856A1E1F1674870053BEB4 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC856A1C1F1674870053BEB4 /* Network.swift */; };
 		AC856A201F167B750053BEB4 /* InMemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC856A1F1F167B750053BEB4 /* InMemoryStorage.swift */; };
 		AC980B5C1F0EA6B600FD70DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC980B5B1F0EA6B600FD70DF /* AppDelegate.swift */; };
-		AC980B5E1F0EA6B600FD70DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC980B5D1F0EA6B600FD70DF /* ViewController.swift */; };
 		AC980B611F0EA6B600FD70DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC980B5F1F0EA6B600FD70DF /* Main.storyboard */; };
 		AC980B641F0EA6B600FD70DF /* CoreDataDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC980B621F0EA6B600FD70DF /* CoreDataDemo.xcdatamodeld */; };
 		AC980B661F0EA6B600FD70DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC980B651F0EA6B600FD70DF /* Assets.xcassets */; };
@@ -21,13 +23,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC25BAD01F1B8FC800CEE2E7 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		AC25BAD21F1C200F00CEE2E7 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		AC3CCF431F152FDC00F84623 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		AC3F5AD91F1E87DF00214172 /* CoreDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
 		AC856A1B1F1674870053BEB4 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		AC856A1C1F1674870053BEB4 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		AC856A1F1F167B750053BEB4 /* InMemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryStorage.swift; sourceTree = "<group>"; };
 		AC980B581F0EA6B600FD70DF /* CoreDataDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC980B5B1F0EA6B600FD70DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AC980B5D1F0EA6B600FD70DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AC980B601F0EA6B600FD70DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC980B631F0EA6B600FD70DF /* CoreDataDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataDemo.xcdatamodel; sourceTree = "<group>"; };
 		AC980B651F0EA6B600FD70DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,11 +70,13 @@
 		AC980B5A1F0EA6B600FD70DF /* CoreDataDemo */ = {
 			isa = PBXGroup;
 			children = (
+				AC25BAD21F1C200F00CEE2E7 /* ItemViewController.swift */,
+				AC3F5AD91F1E87DF00214172 /* CoreDataStorage.swift */,
 				AC980B5B1F0EA6B600FD70DF /* AppDelegate.swift */,
-				AC980B5D1F0EA6B600FD70DF /* ViewController.swift */,
+				AC25BAD01F1B8FC800CEE2E7 /* TableViewController.swift */,
 				ACCAF26D1F12867F007B3165 /* Tank.swift */,
-				AC856A1C1F1674870053BEB4 /* Network.swift */,
 				AC856A1B1F1674870053BEB4 /* DownloadManager.swift */,
+				AC856A1C1F1674870053BEB4 /* Network.swift */,
 				AC856A1F1F167B750053BEB4 /* InMemoryStorage.swift */,
 				AC3CCF431F152FDC00F84623 /* Storage.swift */,
 				AC980B5F1F0EA6B600FD70DF /* Main.storyboard */,
@@ -155,14 +161,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC980B5E1F0EA6B600FD70DF /* ViewController.swift in Sources */,
+				AC3F5ADA1F1E87E000214172 /* CoreDataStorage.swift in Sources */,
 				AC980B641F0EA6B600FD70DF /* CoreDataDemo.xcdatamodeld in Sources */,
 				AC856A1D1F1674870053BEB4 /* DownloadManager.swift in Sources */,
 				AC980B5C1F0EA6B600FD70DF /* AppDelegate.swift in Sources */,
 				AC856A1E1F1674870053BEB4 /* Network.swift in Sources */,
 				AC856A201F167B750053BEB4 /* InMemoryStorage.swift in Sources */,
 				ACCAF26E1F128681007B3165 /* Tank.swift in Sources */,
+				AC25BAD11F1B8FC800CEE2E7 /* TableViewController.swift in Sources */,
 				AC3CCF441F152FDC00F84623 /* Storage.swift in Sources */,
+				AC25BAD31F1C200F00CEE2E7 /* ItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
